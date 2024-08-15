@@ -2,15 +2,19 @@ import React, { useState } from "react";
 
 function ToDoList() {
   const [tasks, setTasks] = useState(["doing the react project"]);
-  const [newTask, setNewTask] = useState();
+  const [newTask, setNewTask] = useState("");
 
   const handleInput = (event) => {
-    setNewTask(() => event.target.value);
+    setNewTask(event.target.value);
   };
 
   const handleNewTask = () => {
     setTasks((t) => [...t, newTask]);
     setNewTask("");
+  };
+
+  const handleDelete = (index) => {
+    setTasks((t) => t.filter((_, i) => i !== index));
   };
 
   return (
@@ -24,8 +28,23 @@ function ToDoList() {
             value={newTask}
             onChange={handleInput}
           ></input>
-          <button onClick={() => handleNewTask}>Add</button>
+          <button className="add-button" onClick={handleNewTask}>
+            Add
+          </button>
         </div>
+        <ul>
+          {tasks.map((element, index) => (
+            <li key={index}>
+              {element}
+              <button
+                onClick={() => handleDelete(index)}
+                className="delete-button"
+              >
+                delete
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );
