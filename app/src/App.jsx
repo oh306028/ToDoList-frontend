@@ -1,5 +1,11 @@
+import toDoList from "./toDoList";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <toDoList></toDoList>
+    </>
+  );
 }
 
 export default App;
