@@ -9,8 +9,10 @@ function ToDoList() {
   };
 
   const handleNewTask = () => {
-    setTasks((t) => [...t, newTask]);
-    setNewTask("");
+    if (newTask.trim() !== "") {
+      setTasks((t) => [...t, newTask]);
+      setNewTask("");
+    }
   };
 
   const handleDelete = (index) => {
@@ -35,7 +37,8 @@ function ToDoList() {
         <ul>
           {tasks.map((element, index) => (
             <li key={index}>
-              {element}
+              <p>{element}</p>
+
               <button
                 onClick={() => handleDelete(index)}
                 className="delete-button"
